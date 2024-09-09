@@ -31,6 +31,7 @@ const onInput = (event: Event) => {
     errorText.value = 'Неверное значение'
     return
   }
+  model.value = sum
   emits('input', parseFloat(sum))
 }
 </script>

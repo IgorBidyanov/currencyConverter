@@ -46,7 +46,7 @@
       transition: background-color 0.3s ease-in-out;
     }
 
-    &:hover {
+    &:has(:not(.router-link-active)):hover {
       color: $green;
 
       &::before {

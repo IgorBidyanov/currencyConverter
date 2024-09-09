@@ -34,12 +34,14 @@ watch(mainCurrency, (newValue: ICurrency, oldValue: ICurrency) => {
   if (newValue?.id === secondaryCurrency.value?.id) {
     setSecondaryCurrency(oldValue)
   }
+  convertMainSum(mainSum.value || 0)
 })
 
 watch(secondaryCurrency, (newValue: ICurrency, oldValue: ICurrency) => {
   if (newValue?.id === mainCurrency.value?.id) {
     setMainCurrency(oldValue)
   }
+  convertMainSum(mainSum.value || 0)
 })
 
 const setMainCurrency = (currency: ICurrency) => {

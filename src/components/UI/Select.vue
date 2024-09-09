@@ -1,17 +1,16 @@
 <template>
-  <div class="select" ref="selectRef">
+  <div class="select" ref="selectRef" @click="toggleDropdown">
     <div class="select__current">
       <span>
         {{ props.mainCurrency?.label }}
       </span>
       <span v-if="!props.isMobile"> ({{ props.mainCurrency?.value }}) </span>
 
-      <button
+      <span
         class="select__toggle"
         :class="{ 'select__toggle--active': isDropdownVisible }"
-        @click="toggleDropdown"
         type="button"
-      ></button>
+      ></span>
     </div>
 
     <transition>
@@ -67,7 +66,6 @@ const toggleDropdown = () => {
 
 const selectItem = (currency: ICurrency) => {
   emits('selectItem', currency)
-  toggleDropdown()
 }
 
 onClickOutside(selectRef, () => (isDropdownVisible.value = false))
@@ -84,6 +82,7 @@ onClickOutside(selectRef, () => (isDropdownVisible.value = false))
   font-size: 16px;
   line-height: 140%;
   background-color: $light-gray;
+  cursor: pointer;
 
   &__current {
     display: flex;
@@ -94,13 +93,13 @@ onClickOutside(selectRef, () => (isDropdownVisible.value = false))
   }
 
   &__toggle {
+    display: inline-block;
     width: 24px;
     height: 24px;
     background: url('@/assets/icons/arrow_toggle.svg') center no-repeat;
     border: none;
     line-height: 0;
     outline: none;
-    cursor: pointer;
     transition: transform 0.3s;
 
     &--active {
